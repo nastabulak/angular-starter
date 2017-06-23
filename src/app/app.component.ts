@@ -10,6 +10,7 @@ import { AppState } from './app.service';
 
 import { LoginComponent } from './login';
 import { CoursesComponent } from './courses';
+import { CourseService } from './courses/course.service';
 
 /**
  * App Component
@@ -21,23 +22,8 @@ import { CoursesComponent } from './courses';
   styleUrls: [
     './app.component.css'
   ],
-  template: `
-    <nav>
-     
-      
-    </nav>
-
-    <main>
-     <login></login>
-     <courses></courses>
-    </main>
-
-    
-
-    <footer>
-      
-    </footer>
-  `
+  templateUrl: 'app.component.html',
+  providers: [CourseService]
 })
 export class AppComponent implements OnInit {
   
