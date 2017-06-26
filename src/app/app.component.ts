@@ -11,19 +11,21 @@ import { AppState } from './app.service';
 import { LoginComponent } from './login';
 import { CoursesComponent } from './courses';
 import { CourseService } from './courses/course.service';
+import { LoginService } from './login/login.service';
 
 /**
  * App Component
  * Top Level Component
  */
 @Component({
+  moduleId: 'module.id',
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
     './app.component.css'
   ],
   templateUrl: 'app.component.html',
-  providers: [CourseService]
+  providers: [CourseService, LoginService]
 })
 export class AppComponent implements OnInit {
   

@@ -28,8 +28,6 @@ export class CoursesComponent implements OnInit {
    }
    onSelect(course: Course) {
   this.selectedId = course.id;
-
-
-}
+   }
 }
 

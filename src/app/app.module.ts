@@ -19,12 +19,21 @@ import {
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
+import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { AppState, InternalStateType } from './app.service';
 
 // App is our top level component
 import { AppComponent } from './app.component';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InternalStateType } from './app.service';
-import { LoginComponent } from './login';
+
+// used to create fake backend
+
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { BaseRequestOptions } from '@angular/http';
+ 
+import { AuthGuard } from './_guards/index';
+import { LoginService, UserService, LoginComponent, fakeBackendProvider } from './login/index';
+
+
 import { CoursesComponent } from './courses';
 import { ChildCoursesComponent } from './courses/child-courses';
 import { routes } from './app.router';
@@ -52,7 +61,7 @@ type StoreType = {
   declarations: [
     AppComponent,
     LoginComponent,
-       
+      
    
   ],
   /**
@@ -74,6 +83,14 @@ type StoreType = {
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS,
+    AuthGuard,
+    LoginService,
+    UserService,
+ 
+        // providers used to create fake backend
+    fakeBackendProvider,
+    MockBackend,
+    BaseRequestOptions
     
   ]
 })
