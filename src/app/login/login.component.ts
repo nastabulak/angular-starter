@@ -50,6 +50,9 @@ export class LoginComponent implements OnInit {
                     // login failed
                     this.loading = false;
                     this.error = 'Неверно введен логин или пароль'
+                    this.loginForm.reset({
+                        login: this.loginForm.value.login
+                    });
                 }
             });
     }

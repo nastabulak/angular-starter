@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
   NgModule,
@@ -61,7 +61,7 @@ type StoreType = {
   declarations: [
     AppComponent,
     LoginComponent,
-      
+     
    
   ],
   /**
@@ -69,7 +69,6 @@ type StoreType = {
    */
   imports: [
     BrowserModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpModule,
     CoursesModule,

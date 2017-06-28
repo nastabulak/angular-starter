@@ -1,8 +1,11 @@
 export class Course {
-    id: number;
-    title: string;
-    duration: string;
-    date: string;
-    author: string;
-    description: string;
+    constructor (
+    public id: number,
+    public title: string,
+    public duration: string,
+    public date: Date,
+    public authors: [string],
+    public description?: string) {}
 }
+
+

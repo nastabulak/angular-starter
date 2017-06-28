@@ -2,10 +2,12 @@ import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
  
-import { CoursesComponent }    from './courses.component';
+import { CoursesComponent }    from './index';
 import { ChildCoursesComponent }  from './child-courses/child-courses.component.ts';
  
 import { CourseService } from './course.service';
+import { FilterPipe } from './filter.pipe';
+import { DurationPipe } from './duration.pipe';
 
 import { CoursesRoutingModule } from './courses-routing.module';
  
@@ -17,7 +19,10 @@ import { CoursesRoutingModule } from './courses-routing.module';
   ],
   declarations: [
     CoursesComponent,
-    ChildCoursesComponent
+    ChildCoursesComponent,
+    FilterPipe,
+    DurationPipe
+  
   ],
   providers: [ CourseService ]
 })

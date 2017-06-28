@@ -10,6 +10,8 @@ import { AppState } from './app.service';
 
 import { LoginComponent } from './login';
 import { CoursesComponent } from './courses';
+
+
 import { CourseService } from './courses/course.service';
 import { LoginService } from './login/login.service';
 
@@ -36,7 +38,7 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);
   }
-
+  logo = './assets/img/logo.png'
 }
 
 /**

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Course } from '../course';
+import { CourseService } from '../course.service';
+import { CoursesComponent } from '../courses.component'
 
 @Component({
     selector: 'child-courses',
