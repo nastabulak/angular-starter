@@ -17,11 +17,11 @@
               <div class="row" >
                 <div class="col-sm-9 " >
                   {{course.title}} 
-                    {{course.duration | duration: duration }} {{course.date | date:'dd.MM.y' }}
+                   <!-- {{course.duration | duration: duration }} {{course.date | date:'dd.MM.y' }}-->
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-default btn-block" type="button" routerLink ="[course.id]"  (click)="onSelect(course)"
-        [class.selected]="isSelected(course)" >Редактировать</button>                                     
+                    <button class="btn btn-default btn-block" type="button"   (click)="gotoDetail(course)"
+      >Редактировать</button>                                     
                 </div>
               </div>
                 <div class="row">
@@ -30,7 +30,7 @@
                     
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-default btn-block" type="button" >Удалить</button>                                     
+                    <button class="btn btn-default btn-block" type="button"  (click) = "delete(course)">Удалить</button>                                     
                 </div>
               </div>
             </div>

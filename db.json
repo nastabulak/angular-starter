@@ -1,4 +1,12 @@
 {
-  "courses": []  
-  
+  "courses": [
+    {
+      "title": "dad",
+      "description": "adsfdsa",
+      "date": "adsfdsa",
+      "duration": "adsfdsa",
+      "authors": "adfdsa",
+      "id": 9
+    }
+  ]
 }

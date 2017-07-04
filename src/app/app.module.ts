@@ -1,19 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+
 import {
   NgModule,
   ApplicationRef
 } from '@angular/core';
-import {
-  removeNgStyles,
-  createNewHosts,
-  createInputTransfer
-} from '@angularclass/hmr';
-import {
-  RouterModule,
-  PreloadAllModules
-} from '@angular/router';
+;
+import { Routes, RouterModule } from '@angular/router';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -24,21 +16,7 @@ import { AppState, InternalStateType } from './app.service';
 
 // App is our top level component
 import { AppComponent } from './app.component';
-
-// used to create fake backend
-
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
- 
-import { AuthGuard } from './_guards/index';
-import { LoginService, UserService, LoginComponent, fakeBackendProvider } from './login/index';
-
-
-import { CoursesComponent } from './courses';
-import { ChildCoursesComponent } from './courses/child-courses';
-import { routes } from './app.router';
-import { CoursesModule }     from './courses/courses.module';
-
+import { AuthentificationModule} from './authentification/authentification.module'
 
 
 // Application wide providers
@@ -59,9 +37,9 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent,
-    LoginComponent,
-     
+  AppComponent,
+
+  
    
   ],
   /**
@@ -69,12 +47,10 @@ type StoreType = {
    */
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
-    HttpModule,
-    CoursesModule,
-    routes,
-   
+    AuthentificationModule,
+    RouterModule
     
+     
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
@@ -82,15 +58,7 @@ type StoreType = {
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS,
-    AuthGuard,
-    LoginService,
-    UserService,
- 
-        // providers used to create fake backend
-    fakeBackendProvider,
-    MockBackend,
-    BaseRequestOptions
-    
+   
   ]
 })
 export class AppModule {

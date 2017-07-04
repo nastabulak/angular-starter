@@ -2,12 +2,12 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
  
 import { CoursesComponent }    from './courses.component';
-import { ChildCoursesComponent }  from './child-courses/child-courses.component.ts';
+import { CourseDetailsComponent }  from '../course-details/course-details.component.ts';
  
 const coursesRoutes: Routes = [
   { path: 'courses',  component: CoursesComponent },
-  { path: 'courses/:id', component: ChildCoursesComponent },
-  { path: 'courses/new', component: ChildCoursesComponent }
+  { path: 'courses/:id', component: CourseDetailsComponent },
+  { path: 'courses/new', component: CourseDetailsComponent }
 ];
  
 @NgModule({
