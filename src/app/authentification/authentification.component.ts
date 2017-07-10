@@ -1,14 +1,14 @@
-import {Component} from '@angular/core';
-import {LoginComponent} from './login/login.component';
-import {LogoffComponent} from './logoff/logoff.component';
+import { Component}  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {routes} from ' ./authentification.router' 
+
+import { routes } from ' ./authentification.router';
+import { LoginComponent } from './login/login.component';
+import { LogoffComponent } from './logoff/logoff.component';
+
 @Component({
     selector: 'authentification',
-   
     template: `
-          
-           <router-outlet> </router-outlet>
+        <router-outlet> </router-outlet>
         `
 })
 

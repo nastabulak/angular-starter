@@ -1,1 +1,1 @@
-export * from ' ./dnd/dnd.component'
+export * from ' ./dnd.component'

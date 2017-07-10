@@ -8,12 +8,10 @@ import { COURSES } from './mock-courses';
 
 export class FilterPipe implements PipeTransform {
 
-    transform(courses: any, term: string): any {
+    transform( courses: any, term: string ): any {
       
-       if (term === undefined) return courses;
+       if ( term === undefined ) return courses;
        return courses.filter(course=>course.title.toLowerCase().indexOf(term.toLowerCase()) !== -1) ;
     } 
-     
-    
 }
 

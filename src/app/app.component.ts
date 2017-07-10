@@ -1,6 +1,4 @@
-/**
- * Angular 2 decorators and services
- */
+
 import {
   Component,
   OnInit,
@@ -28,5 +26,6 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);
   }
+  
   logo = './assets/img/logo.png'
 }

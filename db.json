@@ -1,12 +1,20 @@
 {
   "courses": [
     {
-      "title": "dad",
-      "description": "adsfdsa",
-      "date": "adsfdsa",
-      "duration": "adsfdsa",
-      "authors": "adfdsa",
-      "id": 9
+      "title": "sfsdf",
+      "description": "dsfsafsa",
+      "date": "32.42.3421",
+      "duration": "453245",
+      "authors": "435",
+      "id": 25
+    },
+    {
+      "title": "fdshgsfdg",
+      "description": "sfgdsfg",
+      "date": "42.52.3645",
+      "duration": "sdfgdgs",
+      "authors": "2565364",
+      "id": 27
     }
   ]
 }

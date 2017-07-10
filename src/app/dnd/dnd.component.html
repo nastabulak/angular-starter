@@ -1,56 +1,14 @@
-<!--<div class="row">
-        <div class="col-sm-6">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-        Авторы статьи
-        </div>
-        <div class="panel-body" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listArticleAuthors" (onDropSuccess)="transferDataSuccess($event)">
-            <ul class="list-group" >
-                <li *ngFor="let item of listArticleAuthors; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
-            </ul>
-        </div>
-    </div>
-    </div>
 
-    <div class="col-sm-6">
-        <div class="panel panel-default" >
-            <div class="panel-heading">
-             Авторы
-            </div>
-            <div class="panel-body" dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listAuthors" dnd-draggable  [dragData]="listAuthors">
-                <ul class="list-group" >
-                    <li *ngFor="let item of listAuthors; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
-                   
-                </ul>
-            </div>
-        </div>
-    </div>
-</div> -->
+        
+<div class="wrapper bg-success">
+  <div class="container "  [dragula]='"another-bag" '[dragulaModel]='authorsList'>
+    <div *ngFor="let text of authorsList" [innerHtml]="text"></div>
+  </div>
+  <div class="container" [dragula]='"another-bag"' [dragulaModel]='authorsChosen'>
+    <div *ngFor="let text of authorsChosen" [innerHtml]="text"></div>
+  </div>
+</div>
 
-<h4>Transfer custom data in Drag-and-Drop</h4>
-<div class="row">
-    <div class="col-sm-6">
-        <div class="panel panel-success">
-            <div class="panel-heading">Available to drag</div>
-            <div class="panel-body">
-                <div class="panel panel-default" dnd-draggable [dragEnabled]="true" [dragData]="listAuthors">
-                    <div class="panel-body">
-                        <div>Drag Me</div>
-                        <div>{{listAuthors | json}}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div dnd-droppable class="panel panel-info" (onDropSuccess)="transferDataSuccess($event)">
-            <div class="panel-heading">Place to drop (Items:{{listArticleAuthors.length}})</div>
-            <div class="panel-body">
-                <div [hidden]="!listArticleAuthors.length > 0" *ngFor="let data of listArticleAuthors">{{data | json}}</div>
-            </div>
-        </div>
-    </div>
-</div>`
+{{authorsList.value}}
 
-
-       
+  

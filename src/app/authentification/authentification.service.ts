@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from './user/user'
 
  
@@ -14,16 +14,15 @@ export class AuthentificationService {
     display:string;
 
   logout() {
+
     localStorage.removeItem("user");
- 
- 
+  
   }
  
   login(user){
    
     if (user.login === testUser.login) {
       var authenticatedUser = user 
-      
     }
 
     if (authenticatedUser && authenticatedUser.password === testUser.password){
@@ -34,10 +33,10 @@ export class AuthentificationService {
       return true;
     }
     return false;
- 
-  }
+   }
  
    checkCredentials(){
+
     if (localStorage.getItem("user") === null){
         this._router.navigate(['login']);
 

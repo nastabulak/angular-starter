@@ -39,8 +39,6 @@ type StoreType = {
   declarations: [
   AppComponent,
 
-  
-   
   ],
   /**
    * Import Angular's modules.
@@ -50,7 +48,6 @@ type StoreType = {
     AuthentificationModule,
     RouterModule
     
-     
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.

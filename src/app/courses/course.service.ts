@@ -42,13 +42,18 @@ export class CourseService {
     return Observable.throw(errMsg);
   }
 
-    getCourse(id: number): Promise<Course> {
+   getCourse(id: number){
+     
+      
     const url = `${this.coursesUrl}/${id}`;
-    return this.http.get(url)
-      .toPromise()
-      .then(response => response.json().data as Course)
-      .catch(this.handleError);
+        
+          return this.http.get(url)
+          .map(res => res.json())
+        
+
+     
   }
+
 
   create(course: {}): Observable<Course> {
   
@@ -60,6 +65,7 @@ export class CourseService {
                   .catch(this.handleError);
   }
   update(course: Course): Promise<Course> {
+   
     const url = `${this.coursesUrl}/${course.id}`;
     return this.http
       .put(url, JSON.stringify(course), {headers: this.headers})
