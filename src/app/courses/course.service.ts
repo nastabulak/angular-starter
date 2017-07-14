@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+
  
 import { Course } from './course';
  
@@ -14,13 +15,7 @@ export class CourseService {
   private headers = new Headers({'Content-Type': 'application/json'});
   constructor (private http: Http) {}
  
-  getCourses(): Observable<Course[]> {
-
-    return this.http.get(this.coursesUrl)
-                    .map(this.extractData)
-                    .catch(this.handleError);
-                    
-  }
+  
   private extractData(res: Response) {
   
     let body = res.json();
@@ -42,28 +37,35 @@ export class CourseService {
     return Observable.throw(errMsg);
   }
 
-   getCourse(id: number){
-     
-      
+  getCourses(): Observable<Course[]> {
+
+    return this.http.get(this.coursesUrl)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+                    
+  }
+  
+  getCourse(id: number){
+   
     const url = `${this.coursesUrl}/${id}`;
         
           return this.http.get(url)
           .map(res => res.json())
-        
-
-     
+         
   }
+ 
+ create(course: {}): Promise<Course> {
+
+    let options = new RequestOptions({ headers: this.headers });
 
 
-  create(course: {}): Observable<Course> {
-  
-  let options = new RequestOptions({ headers: this.headers });
-  
+    return this.http.post(this.coursesUrl, JSON.stringify(course), options)
+                   .toPromise()
+                  .then(res => res.json().data as Course)
+                   .catch(this.handleError);
 
-  return this.http.post(this.coursesUrl, course, options)
-                  .map(this.extractData)
-                  .catch(this.handleError);
-  }
+ }
+   
   update(course: Course): Promise<Course> {
    
     const url = `${this.coursesUrl}/${course.id}`;
@@ -73,6 +75,7 @@ export class CourseService {
       .then(() => course)
       .catch(this.handleError);
   }
+
   delete(id: number): Promise<void> {
     const url = `${this.coursesUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
@@ -81,3 +84,6 @@ export class CourseService {
       .catch(this.handleError);
   }
 }
+
+
+ 

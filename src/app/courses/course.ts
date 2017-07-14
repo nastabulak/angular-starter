@@ -3,7 +3,7 @@ export class Course {
     title: string;
     duration: string;
     date: Date;
-    authors: string;
+    authors: Array<string>;
     description: string;
 
     constructor (){}

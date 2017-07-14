@@ -7,6 +7,7 @@ import { CourseService } from './course.service';
 
 
 
+import { Popup } from 'ng2-opd-popup';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { DurationPipe } from '../pipes/duration.pipe';
 
@@ -28,6 +29,7 @@ export class CoursesComponent implements OnInit {
 
     constructor(
         private courseService: CourseService,
+        private popup:Popup,
         private router: Router) { }
     
 
@@ -52,6 +54,29 @@ export class CoursesComponent implements OnInit {
         return this.search
     }
 
+    
+    showPopUp(course: Course){
+        this.popup.options = {
+        header: "Подтверждение",
+        color: "#428bca", // red, blue.... 
+        widthProsentage: 50, // The with of the popou measured by browser width 
+        animationDuration: 0, // in seconds, 0 = no animation 
+        confirmBtnContent: "OK", // The text on your confirm button 
+        cancleBtnContent: "Cancel", // the text on your cancel button 
+        confirmBtnClass: "btn btn-default", // your class for styling the confirm button 
+        cancleBtnClass: "btn btn-default", // you class for styling the cancel button 
+      
+        };
+        
+        this.popup.show(this.popup.options);
+        this.course = course
+    }
+
+    closePopUp(){
+        this.popup.visibleChanged.emit(false);
+        this.delete(this.course)
+    }
+
     delete(course: Course): void {
         this.courseService
         .delete(course.id)
@@ -59,7 +84,7 @@ export class CoursesComponent implements OnInit {
             this.courses = this.courses.filter(c => c !== course);
             if (this.course === course) { this.course = null; }
         });
-      
+          
     }   
     gotoDetail(course: Course ): void {
               
@@ -67,3 +92,8 @@ export class CoursesComponent implements OnInit {
     
   }
 }
+
+
+
+
+ 

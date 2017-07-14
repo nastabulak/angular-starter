@@ -29,6 +29,8 @@ export class DateComponent implements ControlValueAccessor {
         this._value = val
         this.propagateChange(this._value)
     }
+    
+   
 
     onChange (event: KeyboardEvent) {
         const target = event.target as HTMLInputElement
@@ -46,9 +48,3 @@ export class DateComponent implements ControlValueAccessor {
     registerOnTouched (){}
 }
   
-
-
-export class AppComponent {
-  
-  
-}

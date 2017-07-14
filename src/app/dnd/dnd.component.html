@@ -2,13 +2,11 @@
         
 <div class="wrapper bg-success">
   <div class="container "  [dragula]='"another-bag" '[dragulaModel]='authorsList'>
-    <div *ngFor="let text of authorsList" [innerHtml]="text"></div>
+    <div *ngFor="let text of authorsList" [innerHtml]="text"></div> 
   </div>
-  <div class="container" [dragula]='"another-bag"' [dragulaModel]='authorsChosen'>
+  <div class="container" [dragula]='"another-bag"'   [dragulaModel]='authorsChosen'>
     <div *ngFor="let text of authorsChosen" [innerHtml]="text"></div>
   </div>
 </div>
 
-{{authorsList.value}}
 
-  

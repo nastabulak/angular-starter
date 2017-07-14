@@ -1,51 +1,109 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-        <form class="form-horizontal" [formGroup]="courseForm"  (ngSubmit)="courseForm.valid && updateCourse(courseForm.value)">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" [hidden]="submitted">
+        <form class="form-horizontal" #courseForm="ngForm" (ngSubmit)="submit(courseForm.valid, courseForm.value)">
             <div class="form-group">
                 <label for="title" class="col-sm-4 control-label">Название</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="title"  name="name"  formControlName = "title" placeholder="Введите название курса" >
+                    <input type="text" class="form-control" id="title"   required placeholder="Введите название курса"  [(ngModel)]="model.title" name="title">
+
                 </div>
             </div>
             <div class="form-group">
                 <label for="description" class="col-sm-4 control-label">Описание</label>
                 <div class="col-sm-8">
-                    <textarea class="form-control" rows="3" id="description" formControlName = "description" placeholder="Введите описание курса"></textarea>
+                    <textarea class="form-control" rows="3" id="description" required placeholder="Введите описание курса" [(ngModel)]="model.description" name="description"></textarea>
                                         
                 </div>
             </div>  
             <div class="form-group">
+                <label for="authors" class="col-sm-4 control-label">Список авторов</label>
+                <div class="col-sm-8">
+                     <select class="form-control" id="authors" required [(ngModel)]="model.authors" name="authors"> 
+                       <option *ngFor="let auth of authors" [value]="auth">{{auth}}</option>
+                    </select>
+                </div>
+            </div>  
+
+            <div class="form-group">
                 <label for="date" class="col-sm-4 control-label">Дата</label>
                 <div class="col-sm-8">
-                    <date  id="date" formControlName = "date"> </date>
+                    <date  id="date" required minlength="10"  [(ngModel)]="model.date" name="date"> </date>
                 </div>
             </div>
           
-            <div class="form-group">
-                <label for="authors" class="col-sm-4 control-label">Список авторов</label>
-                <div class="col-sm-8">
-                    <dnd  id="authors"  formControlName = "authors"  ></dnd>
-                </div>
-            </div>  
+          
            <div class="form-group">
                 <label for="duration" class="col-sm-4 control-label">Продолжительность</label>
                 <div class="col-sm-8">
-                    <duration  id="duration" formControlName = "duration" ></duration>
+                    <duration  id="duration" required  [(ngModel)]="model.duration" name="duration"></duration>
                 </div>
-            </div>  
+            </div> 
    
             <div class="col-sm-8 col-sm-offset-4">          
-                <button type="submit"
-                [disabled]="!courseForm.valid" class="btn btn-primary" >Сохранить</button> 
-                <button type="reset" 
-                class="btn btn-default" (click) = "goBack()">Отмена</button>
-            
+                <button type="submit" class="btn btn-default" > Сохранить </button>
+                <button type="reset" class="btn btn-default" (click) = "goBack()">Отмена</button>
             </div>
-            <span>{{courseForm.value | json}} {{courseForm.valid}}</span>
         </form>        
     </div>
+     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" [hidden]="!submitted">
+        <h4>Сохранено:</h4>
+        <div class="row">
+            <div class="col-xs-4">Название</div>
+            <div class="col-xs-8  pull-left">{{ model.title }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">Описание</div>
+            <div class="col-xs-8 pull-left">{{ model.description }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">Автор</div>
+            <div class="col-xs-8 pull-left">{{ model.authors }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">Дата</div>
+            <div class="col-xs-8 pull-left">{{ model.date }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">Продолжительность</div>
+            <div class="col-xs-8 pull-left">{{ model.duration  }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Изменить</button>
+        <button class="btn btn-primary" (click)="goBack()">OK</button>
+    </div>
 </div>
-<pop-up></pop-up>
 
-<button (click) = "setValues()"> установка значений</button>
 
+<popup>
+  
+  <div class="container">     
+       <div class="row">
+            <div class="col-xs-4">Форма заполнена некорректно</div>
+          
+        </div> 
+        <div class="row" *ngIf = "!model.title">
+            <div class="col-xs-4">Укажите название курса!</div>
+          
+        </div>
+        <div class="row" *ngIf = "!model.description">
+            <div class="col-xs-4">Укажите описание курса!</div>
+          
+        </div>
+        <div class="row" *ngIf = "!model.authors">
+            <div class="col-xs-4">Укажите автора курса!</div>
+          
+        </div>
+       <div class="row" *ngIf = "!model.date">
+            <div class="col-xs-4">Укажите дату курса!</div>
+          
+        </div>
+         
+       <div class="row" *ngIf = "!model.duration">
+            <div class="col-xs-4">Укажите продолжительность курса!</div>
+          
+        </div>
+       
+      
+    </div>
+  <button type="button" class="btn btn-default" (click) = "closePopUp()" >OK</button>
+</popup>
