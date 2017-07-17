@@ -18,6 +18,9 @@ import { AppState, InternalStateType } from './app.service';
 import { AppComponent } from './app.component';
 import { AuthentificationModule} from './authentification/authentification.module'
 
+import { CoursesModule} from './courses/courses.module'
+
+
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -46,7 +49,8 @@ type StoreType = {
   imports: [
     BrowserModule,
     AuthentificationModule,
-    RouterModule
+    RouterModule,
+    CoursesModule
     
   ],
   /**

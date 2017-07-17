@@ -1,20 +1,36 @@
 {
   "courses": [
     {
-      "title": "uter",
-      "description": "rtwshyrwyh",
-      "authors": "чебурашка",
-      "date": "57.63.5645",
-      "duration": "87687875t876",
-      "id": 6
+      "title": "dsfgsafg",
+      "description": "fghxrgf",
+      "date": "97.87.9869",
+      "duration": "2345243523",
+      "authors": "суперавтор",
+      "id": 5
     },
     {
-      "title": "okjh",
-      "description": "kjhkjb",
+      "title": "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+      "description": "wrtwertwert",
+      "date": "65.62.5632",
+      "duration": "3456356",
       "authors": "суперавтор",
-      "date": "65.98.7987",
-      "duration": "987989",
       "id": 7
+    },
+    {
+      "title": "qqqqqqqqq",
+      "description": "qqq",
+      "date": "32.42.2342",
+      "duration": "24243243",
+      "authors": "лермонтов",
+      "id": 8
+    },
+    {
+      "title": "kjhgkjgkjgkhg",
+      "description": "oiyohgjhgkj",
+      "date": "87.65.8587",
+      "duration": "98798798798",
+      "authors": "пушкин",
+      "id": 9
     }
   ]
 }

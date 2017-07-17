@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CourseService } from '../courses/course.service';
 import { Course } from '../courses/course';
 import { DurationComponent } from '../duration/duration.component' ;
@@ -7,7 +7,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormArray, FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoursesComponent } from '../courses.component';
 import {Popup} from 'ng2-opd-popup';
-
+import { Subscription } from 'rxjs';
+import {ErrorSummaryComponent} from './error-summary/error-summary.component';
+import {SummaryError} from './error-summary/summary-error'
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -15,70 +17,128 @@ import 'rxjs/add/operator/switchMap';
     templateUrl: 'course-details.component.html'
 })
 
-export class CourseDetailsComponent implements OnInit {
-
+export class CourseDetailsComponent implements OnInit, OnDestroy {
+  course: Course;
   authors = ['пушкин', 'лермонтов',
             'суперавтор', 'чебурашка'];
 
-  model = new Course ();
-  value; id;
-  submitted = false;
-  public routeParams: any = {}
+  sub: Subscription;
+ 
+  courseForm: FormGroup;
+  formErrors:any
+ 
 
   constructor (
     private courseService: CourseService,
     private router: Router,
     private popup: Popup,
-    private route: ActivatedRoute){
-       this.route.params.subscribe(params => {
-       this.id = +params['id']})
+    private route: ActivatedRoute,
+    private fb: FormBuilder){
        
     }
 
   
   ngOnInit() {
-     if (this.id) {
-       this.courseService.getCourse(this.id) 
-      .subscribe((course: Course) => ( this.model = course ))} 
-     
-           
-  }
-  goBack(): void {             
-    this.router.navigate(['../courses']);    
+      this.courseForm = this.fb.group({});
+      this.sub = this.route.params
+          .subscribe(params => {
+             let courseId = +params['id'];
+             if(courseId) {
+       this.courseService.getCourse(courseId)
+      .subscribe(course => {
+        this.course=course;
+        this.initializeForm();
+        });
+    } else {
+      this.course = new Course();
+      this.initializeForm();
+  }})
+  
+                
   }
 
-  
+  ngOnDestroy(){
+      this.sub.unsubscribe()
+  }
+
+  initializeForm(){
+    this.courseForm = this.fb.group({
+        title : [this.course.title,  Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z]+$")])],
+        description: [this.course.description, Validators.compose([Validators.required])],
+        date: [this.course.date, Validators.compose([Validators.required])],
+        duration: [this.course.duration, Validators.compose([Validators.required])],
+        authors: [this.course.authors, Validators.compose([Validators.required])],
+         
+      })
+  }
+
+  goBack($event): void {   
+
+    if(this.courseForm.dirty) {
+      if(confirm('вы действительно хотите покинуть страницу? Данные не сохраняться.')) {
+          this.goToList(); 
+      }
+    } else  {       
+      this.goToList(); 
+    }
+    $event.preventDefault();  
+  }
+
+  goToList(){
+    this.router.navigate(['../courses']); 
+  }
 
   addCourse(course: Course) {
     
     this.courseService.create(course)
-              
-                    
+    .subscribe( course =>{
+        this.goToList()
+      });
+                
   }
 
+
+
   updateCourse(course: Course): void {
-    console.log(this.model.id)
-     if (this.model.id){
-      course.id = this.model.id
-      this.courseService.update(course)
-                        
-     } else {
-        this.addCourse(course);
-         }
+  
+    this.courseService.update(course)
+      .subscribe( course =>{
+        this.goToList()
+      });
       
       
   }   
 
-  submit(valid, value){
-    if (valid) {
-      this.submitted = true;
-      this.updateCourse(value)
+  onSubmit(){
+ 
+    this.formErrors = [];
+    if(this.courseForm.valid){
+      var course = Object.assign({}, this.course, this.courseForm.value);
+      if (course.id){
+        this.updateCourse(course)
+      } else {
+        this.addCourse(course)
+      }
+      
     } else {
-      this.showPopUp(valid)
+     this.showPopUp()
+    }
+    return false;
+  }
+  showErrorSummary(){
+    for (var controlName in this.courseForm.controls){
+      let control = this.courseForm.controls[controlName];
+      if(control.errors){
+        this.formErrors.push(new SummaryError(
+          controlName,
+          JSON.stringify(control.errors)
+          ))
+          
+      }
     }
   }
   
-  showPopUp(value){
+  showPopUp(){
     this.popup.options = {
       header: "Ошибка",
       color: "#428bca",
@@ -86,7 +146,7 @@ export class CourseDetailsComponent implements OnInit {
       animationDuration: 0, 
       showButtons: false, 
     };
-    this.value = value
+    this.showErrorSummary()
     this.popup.show(this.popup.options);
   }
 

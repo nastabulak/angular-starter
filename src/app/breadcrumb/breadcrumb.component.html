@@ -1,6 +1,4 @@
-<ol class="breadcrumb">
-      <li><a routerLink="" class="breadcrumb">Курсы</a></li>
-      <li *ngFor="let breadcrumb of breadcrumbs">
-        <a [routerLink]="[breadcrumb.url, breadcrumb.params]">{{ breadcrumb.label }}</a>
-      </li>
-    </ol>
+<ol class="breadcrumb" >
+      <li><a routerLink="../courses" class="breadcrumb">Курсы</a></li>
+      <li *ngIf = "course"><a [routerLink]= "['../../courses', course.id]" class="breadcrumb">{{course.title}}</a></li>
+</ol>

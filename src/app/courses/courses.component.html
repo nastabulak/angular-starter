@@ -1,42 +1,11 @@
- <breadcrumb></breadcrumb>
+ <breadcrumb></breadcrumb>   
  <div class="row">
-    <div class="col-sm-6">
-        <form id="filter">
-            <input type="search" #searchInput/>
-            <button class="btn btn-default" type="button" (click)= 'searchFor(searchInput.value)'>Найти</button> 
-        </form>
-    </div>
+   <search  (searchFor) = "searchFor($event)"> </search>
     <div class="col-sm-3 col-sm-offset-3">
         <button class="btn btn-default btn-block" type="button" routerLink="./new">Добавить курс</button>       
     </div>
 </div>
-
-<div class="row" *ngFor="let course of courses | filter: term">
-    <div class="col-sm-12">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row" >
-                    <div class="col-sm-9 " >
-                    {{course.title}} 
-                    {{course.duration | duration: duration }} <!--{{course.date | date:'dd.MM.y' }}-->
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-default btn-block" type="button"   (click)="gotoDetail(course)">Редактировать</button>                                     
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-9 ">
-                    {{course.author}} {{course.description}}
-                        
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-default btn-block" type="button"  (click) = "showPopUp(course)">Удалить</button>                                     
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<course-list [courses] = "courses" [value] = "value" (delete) = "delete($event)" (edit) = "edit($event)">  </course-list>
 
 <popup (confirmClick)="closePopUp(course)" >
   <div> Вы действительно хотите удалить этот курс?</div>

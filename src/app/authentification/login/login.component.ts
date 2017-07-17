@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { Router} from '@angular/router'
 import { AuthentificationService } from '../authentification.service'
 
 import { User } from '../user/user';
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
  
     constructor(
         private authService: AuthentificationService,
+        private router: Router,
         fb: FormBuilder){
             this.loginForm = fb.group({
                 login : [null,  Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z]+$")])],
@@ -32,13 +33,13 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        if(!this.authService.login(this.loginForm.value)){
-            this.errorMsg = 'Неверно введен логин или пароль';
-            this.loginForm.reset({
-                login: this.loginForm.value.login
-            });
+        this.authService.login(this.loginForm.value)
+        .subscribe (res =>{
+            if (res) {
+                this.router.navigate (['/courses'])
+            }
+        })
         }
-    }
 }
 
 

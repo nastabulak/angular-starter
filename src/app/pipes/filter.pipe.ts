@@ -10,7 +10,7 @@ export class FilterPipe implements PipeTransform {
 
     transform( courses: any, term: string ): any {
       
-       if ( term === undefined ) return courses;
+       if ( !term  ) return courses;
        return courses.filter(course=>course.title.toLowerCase().indexOf(term.toLowerCase()) !== -1) ;
     } 
 }

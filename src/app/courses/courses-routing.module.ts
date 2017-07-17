@@ -9,6 +9,7 @@ const coursesRoutes: Routes = [
   { path: 'courses',  component: CoursesComponent, canActivate: [AuthGuard] },
   { path: 'courses/:id', component: CourseDetailsComponent, canActivate: [AuthGuard] },
   { path: 'courses/new', component: CourseDetailsComponent, canActivate: [AuthGuard] }
+ // { path: '**', redirectTo: '/courses', pathMatch: 'full'} 
 ];
  
 @NgModule({

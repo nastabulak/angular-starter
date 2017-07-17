@@ -2,6 +2,9 @@ import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 
+import { BrowserModule } from '@angular/platform-browser';
+
+
  
 import { CoursesComponent }    from './index';
 import { CourseDetailsComponent }  from '../course-details/course-details.component';
@@ -18,11 +21,15 @@ import { FilterPipe } from '../pipes/filter.pipe';
 import { DurationPipe } from '../pipes/duration.pipe';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 
+import { SearchComponent} from './search/search.component'
+import { CourseListComponent} from './course-list/course-list.component';
 import { CoursesRoutingModule } from './courses-routing.module';
 import { DragulaModule } from 'ng2-dragula'
+import {ErrorSummaryComponent} from '../course-details/error-summary/error-summary.component';
  
 @NgModule({
   imports: [
+    BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -40,9 +47,16 @@ import { DragulaModule } from 'ng2-dragula'
     BreadcrumbComponent,
     DurationComponent,
     DateComponent ,
-    DndComponent
+    DndComponent, 
+    SearchComponent,
+    CourseListComponent,
+    ErrorSummaryComponent
+
   
   ],
-  providers: [ CourseService ]
+  providers: [ CourseService ],
+  exports: [
+    BreadcrumbComponent
+  ]
 })
 export class CoursesModule {}

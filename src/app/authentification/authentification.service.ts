@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from './user/user'
+import { Observable } from 'rxjs';
+import { User } from './user/user';
+import 'rxjs/add/operator/map'
 
  
 var testUser = new User('q','q');
@@ -9,37 +10,35 @@ var testUser = new User('q','q');
 @Injectable()
 export class AuthentificationService {
  
-  constructor(
-    private _router: Router){}
-    display:string;
-
+  constructor(){}
+   
   logout() {
 
     localStorage.removeItem("user");
   
   }
- 
+
+
   login(user){
+    return Observable.create (observer => {
+      setTimeout( () =>{
+      let result = this.checkUser(user);
+      if (result) {
+        localStorage.setItem("user", JSON.stringify(user))
+      } 
+      observer.next(result)
+    }, 500);
+    })
+  }
    
-    if (user.login === testUser.login) {
-      var authenticatedUser = user 
-    }
-
-    if (authenticatedUser && authenticatedUser.password === testUser.password){
-      
-      localStorage.setItem("user", JSON.stringify(authenticatedUser));
-      this._router.navigate(['courses']);  
-    
-      return true;
-    }
-    return false;
-   }
+  checkUser (user) {
+     return (user.login === testUser.login && user.password === testUser.password)
  
-   checkCredentials(){
+  }
+   
+  checkCredentials(){
 
-    if (localStorage.getItem("user") === null){
-        this._router.navigate(['login']);
-
+   return !! localStorage.getItem("user") 
     }
-  } 
+  
 }
