@@ -1,6 +1,5 @@
 import { Component, DoCheck } from '@angular/core';
-
-import { AuthentificationService } from '../authentification.service'
+import { AuthentificationService } from '../index';
  
 @Component({
     selector: 'logoff',
@@ -11,10 +10,10 @@ import { AuthentificationService } from '../authentification.service'
 export class LogoffComponent {
    
     display:string;
- 
- 
+  
     constructor(
-        private authService:AuthentificationService){}
+        private authService:AuthentificationService){
+        }
      
     ngDoCheck() {
         this.display = JSON.parse(localStorage.getItem('user'));

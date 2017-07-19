@@ -1,24 +1,51 @@
-<div class="row" *ngFor="let course of courses | filter: value ">
-    <div class="col-sm-12">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row" >
-                    <div class="col-sm-9 " >
-                        {{course.title}} 
-                        {{course.duration | duration: duration }} <!--{{course.date | date:'dd.MM.y' }}-->
+<div *ngFor="let course of courses | filter: value ">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-5 text-left">
+                    <h4>
+                        <strong>
+                        {{course.title}}
+                        </strong>
+                    </h4>
+                </div>
+                <div class="col-xs-3 text-center">
+                    <h4>
+                        {{course.duration | duration: duration }}
+                    </h4>
+                </div>
+                <div class=" col-xs-3 text-right">
+                    <h4 class="align-bottom">
+                        {{course.date }}
+                    </h4>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel-body ">
+            <div class="row">
+                <div class="col-sm-9 ">
+                    <div>Автор курса: {{course.authors}}
                     </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-default btn-block" type="button"   (click)="edit.emit(course)">Редактировать</button>                                     
+
+                </div>
+                <div class=" col-sm-3">
+                    <button class="btn btn-default btn-block" type="button" (click)="edit.emit(course)">
+                            Редактировать
+                        </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9 ">
+
+                    <div>
+                        {{course.description}}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-9 ">
-                        {{course.author}} {{course.description}}
-                        
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="btn btn-default btn-block" type="button"  (click) = "delete.emit(course)">Удалить</button>                                     
-                    </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-default btn-block" type="button" (click)="delete.emit(course)">
+                            Удалить
+                        </button>
                 </div>
             </div>
         </div>

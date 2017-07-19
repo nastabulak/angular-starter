@@ -1,36 +1,20 @@
 {
   "courses": [
     {
-      "title": "dsfgsafg",
-      "description": "fghxrgf",
-      "date": "97.87.9869",
-      "duration": "2345243523",
+      "title": "dsgthsgdheshesty",
+      "description": "stdhdsh",
+      "date": "12.08.2016",
+      "duration": "56",
       "authors": "суперавтор",
-      "id": 5
+      "id": 2
     },
     {
-      "title": "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
-      "description": "wrtwertwert",
-      "date": "65.62.5632",
-      "duration": "3456356",
-      "authors": "суперавтор",
-      "id": 7
-    },
-    {
-      "title": "qqqqqqqqq",
-      "description": "qqq",
-      "date": "32.42.2342",
-      "duration": "24243243",
+      "title": "Красота",
+      "description": "фывпаодлмсьтбьфивы даорйцибьтфсим.фо.маФЫЙКПА ЫВАРЫПРЫЦ",
+      "date": "20.12.2015",
+      "duration": "234524",
       "authors": "лермонтов",
-      "id": 8
-    },
-    {
-      "title": "kjhgkjgkjgkhg",
-      "description": "oiyohgjhgkj",
-      "date": "87.65.8587",
-      "duration": "98798798798",
-      "authors": "пушкин",
-      "id": 9
+      "id": 3
     }
   ]
 }

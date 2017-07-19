@@ -13,14 +13,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { ENV_PROVIDERS } from './environment';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-
 // App is our top level component
 import { AppComponent } from './app.component';
 import { AuthentificationModule} from './authentification/authentification.module'
-
 import { CoursesModule} from './courses/courses.module'
-
-
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -41,7 +37,6 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
   AppComponent,
-
   ],
   /**
    * Import Angular's modules.
@@ -51,7 +46,6 @@ type StoreType = {
     AuthentificationModule,
     RouterModule,
     CoursesModule
-    
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
@@ -59,7 +53,6 @@ type StoreType = {
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS,
-   
   ]
 })
 export class AppModule {

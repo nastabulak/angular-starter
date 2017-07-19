@@ -1,30 +1,28 @@
-import { Injectable }              from '@angular/core';
-import { Http, Response, Headers, RequestOptions }          from '@angular/http';
- 
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
- 
 import { Course } from './course';
- 
+
 @Injectable()
 export class CourseService {
   private coursesUrl = 'http://localhost:3004/courses';  // URL to web API
-  private headers = new Headers({'Content-Type': 'application/json'});
-  constructor (private http: Http) {}
- 
-  
-  private extractData(res: Response) {
-  
-    let body = res.json();
-    return body || { };
-  
+  private headers = new Headers({ 'Content-Type': 'application/json' });
+
+  constructor(private http: Http) { 
+
   }
- 
-  private handleError (error: Response | any) {
-  
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || {};
+  }
+
+  private handleError(error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
@@ -38,55 +36,42 @@ export class CourseService {
   }
 
   getCourses(): Observable<Course[]> {
-
     return this.http.get(this.coursesUrl)
-                    .map(this.extractData)
-                    .catch(this.handleError);
-                    
+      .map(this.extractData)
+      .catch(this.handleError);
+
   }
-  
-  getCourse(id: number){
-  
-   
+
+  getCourse(id: number) {
     const url = `${this.coursesUrl}/${id}`;
-        
-          return this.http.get(url)
-          .map(res => res.json())
-         
+    return this.http.get(url)
+      .map(res => res.json())
+
   }
- 
- create(course: {}): Observable<Course> {
-    
 
+  create(course: {}): Observable<Course> {
     let options = new RequestOptions({ headers: this.headers });
-
-
     return this.http.post(this.coursesUrl, JSON.stringify(course), options)
-                  
-                  .map(res => res.json().data as Course)
-                   .catch(this.handleError);
+      .map(res => res.json().data as Course)
+      .catch(this.handleError);
 
- }
-   
+  }
+
   update(course: Course): Observable<Course> {
-   
     const url = `${this.coursesUrl}/${course.id}`;
     return this.http
-      .put(url, JSON.stringify(course), {headers: this.headers})
-      
+      .put(url, JSON.stringify(course), { headers: this.headers })
       .map(() => course)
       .catch(this.handleError);
   }
 
   delete(id: number): Observable<void> {
     const url = `${this.coursesUrl}/${id}`;
-
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, { headers: this.headers })
       .map(() => null)
       .catch(this.handleError);
-    
   }
 }
 
 
- 
+

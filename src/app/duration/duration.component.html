@@ -1,6 +1,0 @@
-<div class="row">
-    <span (keyup)="0" class="context col-sm-6 ">
-        <input type="text"  class="form-control" [value] ="value" #durationInput (input) = "onChange($event)" placeholder="в минутах">
-    </span>
-    <span class="col-sm-6"> {{durationInput.value| duration: durationInput.value}}</span>
-</div>

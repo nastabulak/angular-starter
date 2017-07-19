@@ -1,6 +1,14 @@
-<div class="col-md-3 col-md-offset-9" *ngIf="display" >
-    <div > {{display.login}}  </div>
-    <p><a (click)="logout()" href="" >Logoff</a></p>
+<div  *ngIf="display" >
+    <div > 
+        <u>
+        Ваш логин: {{display.login}} 
+        </u>
+    </div>
+    <p>
+        <a (click)="logout()" href="" class="btn btn-primary" >
+            Logoff
+        </a>
+    </p>
 </div>
 
 

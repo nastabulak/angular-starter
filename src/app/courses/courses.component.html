@@ -1,12 +1,24 @@
- <breadcrumb></breadcrumb>   
- <div class="row">
-   <search  (searchFor) = "searchFor($event)"> </search>
-    <div class="col-sm-3 col-sm-offset-3">
-        <button class="btn btn-default btn-block" type="button" routerLink="./new">Добавить курс</button>       
-    </div>
-</div>
-<course-list [courses] = "courses" [value] = "value" (delete) = "delete($event)" (edit) = "edit($event)">  </course-list>
+<breadcrumb></breadcrumb>
 
-<popup (confirmClick)="closePopUp(course)" >
-  <div> Вы действительно хотите удалить этот курс?</div>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+    <div class="row ">
+
+    <search (searchFor)="searchFor($event)">
+    </search>
+    <div class="col-sm-3 pull-right">
+      <button class="btn btn-primary btn-block" type="button" routerLink="./new">
+      Добавить курс
+    </button>
+    </div>
+    </div>
+  </div>
+</div>
+<course-list [courses]="courses" [value]="value" (delete)="delete($event)" (edit)="edit($event)">
+</course-list>
+
+<popup (confirmClick)="closePopUp(course)">
+  <div>
+    Вы действительно хотите удалить этот курс?
+  </div>
 </popup>

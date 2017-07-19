@@ -6,7 +6,9 @@ export class Course {
     authors: Array<string>;
     description: string;
 
-    constructor (){}
+    constructor (){
+        
+    }
 }
 
 

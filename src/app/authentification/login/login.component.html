@@ -1,26 +1,62 @@
-
 <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-2 col-md-8 col-md-offset-3">
-       <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-        <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="loginForm.valid && login()"  >
+       <div  *ngIf="errorMsg" 
+             class="alert alert-danger">
+           {{errorMsg}}
+        </div>
+        <form   class="form-horizontal" 
+                [formGroup]="loginForm" 
+                (ngSubmit)="loginForm.valid && login()" >
             <div class="form-group" >
-                <label class="col-sm-2 control-label" for="login">Логин</label>
-                <div class="col-sm-6" [ngClass]="{'has-error':!loginForm.controls['login'].valid && loginForm.controls['login'].touched}"> 
-                    <input type="text" class="form-control" name="login" placeholder="Введите логин" [formControl]="loginForm.controls['login']"   > 
+                <label  class="col-sm-2 control-label" 
+                        for="login">
+                    Логин
+                </label>
+                <div class="col-sm-6" 
+                    [ngClass]="{'has-error':!loginForm.controls['login'].valid && loginForm.controls['login'].touched}"> 
+                    <input  type="text" 
+                            class="form-control" 
+                            name="login" 
+                            placeholder="Введите логин" 
+                            [formControl]="loginForm.controls['login']"> 
                 </div>
-                <div class="col-sm-4 alert-danger" *ngIf="loginForm.controls['login'].hasError('required') && loginForm.controls['login'].touched" >* введите</div> 
-                <div class="col-sm-4 alert-danger" *ngIf="loginForm.controls['login'].hasError('pattern') && loginForm.controls['login'].touched" >* Поле может содержать, только латинские буквы</div>             
+                <div class="col-sm-4 alert-danger" 
+                    *ngIf="loginForm.controls['login'].hasError('required') && loginForm.controls['login'].touched" >
+                    * введите
+                </div> 
+                <div class="col-sm-4 alert-danger" 
+                    *ngIf="loginForm.controls['login'].hasError('pattern') && loginForm.controls['login'].touched" >
+                    * Поле может содержать, только латинские буквы
+                </div>             
             </div>
             <div class="form-group" >
-                <label class="col-sm-2 control-label" for="password">Пароль</label>
-                <div class="col-sm-6" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}"> 
-                    <input type="password" class="form-control" name="password" placeholder="Введите пароль" [formControl]="loginForm.controls['password']"   >  
+                <label class="col-sm-2 control-label" 
+                        for="password">
+                    Пароль
+                </label>
+                <div   class="col-sm-6" 
+                       [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}"> 
+                    <input  type="password"
+                            class="form-control" 
+                            name="password" 
+                            placeholder="Введите пароль" 
+                            [formControl]="loginForm.controls['password']">  
                 </div> 
-                <div class="col-sm-4 alert-danger" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">* введите</div>              
-                <div class="col-sm-4 alert-danger" *ngIf="loginForm.controls['password'].hasError('pattern') && loginForm.controls['password'].touched" >* Поле может содержать, только латинские буквы и цифры</div>             
+                <div class="col-sm-4 alert-danger" 
+                    *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">
+                    * введите
+                </div>              
+                <div class="col-sm-4 alert-danger" 
+                     *ngIf="loginForm.controls['password'].hasError('pattern') && loginForm.controls['password'].touched" >
+                     * Поле может содержать, только латинские буквы и цифры
+                </div>             
             </div> 
-            <div class="col-sm-2 col-sm-offset-2">            
-                <button type="submit" class="btn btn-default btn-block" [disabled]="!loginForm.valid">Войти</button>          
+            <div class="col-sm-2 col-sm-offset-2 col-xs-6 col-xs-offset-2">            
+                <button type="submit" 
+                        class="btn btn-primary  btn-block" 
+                        [disabled]="!loginForm.valid">
+                        Войти
+                </button>          
             </div>
         </form>
     </div>

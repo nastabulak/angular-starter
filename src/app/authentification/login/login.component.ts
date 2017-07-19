@@ -1,32 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router} from '@angular/router'
-import { AuthentificationService } from '../authentification.service'
+import { Router } from '@angular/router'
+import { AuthentificationService } from '../index'
+import { User } from '../user';
 
-import { User } from '../user/user';
-
- 
 @Component({
     selector: 'login-form',
     providers: [AuthentificationService],
-    templateUrl:'./login.component.html'
+    templateUrl: './login.component.html'
 })
- 
+
 export class LoginComponent implements OnInit {
- 
-    public user = new User('','');
+
+    public user = new User('', '');
     public errorMsg = '';
-    loginForm : FormGroup;
- 
+    loginForm: FormGroup;
+
     constructor(
         private authService: AuthentificationService,
         private router: Router,
-        fb: FormBuilder){
-            this.loginForm = fb.group({
-                login : [null,  Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z]+$")])],
-                password: [null, Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z0-9]+$")])],
-            })
-        };
+        fb: FormBuilder) {
+        this.loginForm = fb.group({
+            login: [null, Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z]+$")])],
+            password: [null, Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z0-9]+$")])],
+        })
+    };
 
     ngOnInit() {
         this.authService.logout();
@@ -34,15 +32,16 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.authService.login(this.loginForm.value)
-        .subscribe (res =>{
-            if (res) {
-                this.router.navigate (['/courses'])
-            }
-        })
-        }
+            .subscribe(res => {
+                if (res) {
+                    this.router.navigate(['/courses'])
+                } else {
+                    this.errorMsg = 'Неверно введен логин или пароль';
+                    this.loginForm.reset({
+                        login: this.loginForm.value.login
+                    })
+                }
+            })
+    }
 }
 
-
-  
- 
-  

@@ -1,6 +1,9 @@
- <div class="col-sm-6">
-      
-       <input type="text" #term/>
-            <button class="btn btn-default" type="button" (click)='search(term.value)'>Найти</button> 
-  
+<div class="col-sm-6">
+      <div class="input-group">
+      <input type="text" class="form-control" #term placeholder="Поиск по названию">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" (click)='search(term.value)'> Найти </button>
+      </span>
+    </div>
 </div>
+
